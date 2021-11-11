@@ -30,6 +30,9 @@ class MainActivity : AppCompatActivity() {
             Ordenar una lista manualmente
              */
             ordenarLista()
+            /*
+            Validar si una cedula es legitima
+            */
         }
 
     private fun listadoOrdenado() {
@@ -94,6 +97,45 @@ class MainActivity : AppCompatActivity() {
         for (i in (0 until cantidad)){
             println(listaNumeros[i])
         }
+    }
+
+    private fun certificarCedula() {
+        val cedulaErick = "1104401078"
+        var multiplicarResultados = 0
+        var cadenaResultado = ""
+        var sumarResultadosSuma = 0
+        var superior = 0
+        val listaMultiplicar = arrayListOf(2,1,2,1,2,1,2,1,2)
+        val sumarListaCedula = arrayListOf<Int>()
+        val listaCedula = arrayListOf<Int>()
+        val resultadosSuma = arrayListOf<Int>()
+
+
+        for (i in cedulaErick){
+            listaCedula.add(Character.getNumericValue(i))
+        }
+
+
+        for (i in 0 until listaMultiplicar.size){
+            multiplicarResultados = listaCedula[i] * listaMultiplicar[i]
+            if (multiplicarResultados >= 10){
+                cadenaResultado = multiplicarResultados.toString()
+                resultadosSuma.add(Character.getNumericValue(cadenaResultado[0])+
+                        Character.getNumericValue(cadenaResultado[1]))
+            }else{
+                resultadosSuma.add(multiplicarResultados)
+            }
+        }
+        sumarResultadosSuma = resultadosSuma.sum()
+        superior = sumarResultadosSuma - (sumarResultadosSuma % 10) + 10;
+
+
+        if((superior-sumarResultadosSuma) == listaCedula.last()){
+            println("La cedula $cedulaErick es válida")
+        }else{
+            println("La cedula $cedulaErick es inválida")
+        }
+
     }
 
 }
