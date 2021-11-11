@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             /*
             Validar si una cedula es legitima
             */
+            certificarCedula()
         }
 
     private fun listadoOrdenado() {
